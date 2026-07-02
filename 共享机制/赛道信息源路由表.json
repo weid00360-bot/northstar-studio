@@ -1,0 +1,67 @@
+{
+  "_说明": "赛道 → 信息源映射。选题环节据 profile.sources_track 查本表自动挂源。新增赛道加一个 key 即可。channel=走哪个脚本/skill;mode=auto可自动跑/semi需人工(无API或反爬);dep=依赖项(缺了降级semi)。",
+  "_通道登记": {
+    "firsthand": "~/新媒体agent/scripts/firsthand.py — GitHub新热repo + HN近7天AI热议(一手)",
+    "aihot": "aihot skill — AI行业聚合(二手,覆盖广)",
+    "douyin_hot": "~/新媒体agent/scripts/douyin_hot.py — 抖音热榜(可AI过滤)",
+    "tikhub": "TikHub公开API(同blogger-distiller通道) — 小红书/抖音 搜索+评论+联想词;dep=TikHub Token,缺则降级semi",
+    "last30days": "last30days skill — Reddit/HN/GitHub/Web免费即用;X/YouTube/TikTok需额外配置",
+    "manual": "无公开API/反爬强 — 用户复制热帖或浏览器读,agent提炼"
+  },
+
+  "AI/科技": {
+    "aliases": ["AI", "科技", "AI工具", "AI创业", "build-in-public", "独立开发"],
+    "sources": [
+      { "name": "GitHub Trending", "channel": "firsthand", "mode": "auto", "role": "一手", "hint": "什么工具/agent/skill正在火,最贴build-in-public" },
+      { "name": "Hacker News", "channel": "firsthand", "mode": "auto", "role": "一手", "hint": "技术圈原始观点" },
+      { "name": "aihot聚合", "channel": "aihot", "mode": "auto", "role": "二手", "hint": "覆盖广,与一手交叉验证=强信号" },
+      { "name": "抖音热榜(AI过滤)", "channel": "douyin_hot", "mode": "auto", "role": "平台热榜·辅", "hint": "AI杀进热榜=破圈强信号" },
+      { "name": "Reddit/HN验证", "channel": "last30days", "mode": "auto", "role": "深挖", "hint": "候选选定后按需扒近30天讨论" }
+    ]
+  },
+
+  "职场/白领": {
+    "aliases": ["职场", "白领", "求职", "面试", "谈薪", "HR", "副业"],
+    "sources": [
+      { "name": "小红书(AI办公/职场笔记+评论)", "channel": "tikhub", "mode": "auto", "dep": "TikHub Token", "role": "痛点·主", "hint": "贴白领受众,看高赞评论原话" },
+      { "name": "搜索联想词+评论区", "channel": "tikhub", "mode": "auto", "dep": "TikHub Token", "role": "痛点金矿", "hint": "抖音/小红书搜职场关键词,下拉联想+高赞评论当钩子" },
+      { "name": "脉脉", "channel": "manual", "mode": "semi", "role": "痛点·最对口", "hint": "白领吐槽/焦虑/真问题,反爬强需手动" },
+      { "name": "知乎", "channel": "manual", "mode": "semi", "role": "深度长尾", "hint": "职场问题/AI问答" },
+      { "name": "Reddit", "channel": "last30days", "mode": "auto", "role": "全球视角·辅", "hint": "中文职场高频它文化错位,别当主力" }
+    ]
+  },
+
+  "美妆/穿搭/生活": {
+    "aliases": ["美妆", "穿搭", "护肤", "生活", "好物"],
+    "sources": [
+      { "name": "小红书", "channel": "tikhub", "mode": "auto", "dep": "TikHub Token", "role": "主战场", "hint": "搜品类+评论区,看种草点" },
+      { "name": "抖音", "channel": "tikhub", "mode": "auto", "dep": "TikHub Token", "role": "主", "hint": "短视频热梗+挑战" },
+      { "name": "抖音热榜", "channel": "douyin_hot", "mode": "auto", "role": "平台热榜·辅", "hint": "蹭热梗句式" }
+    ]
+  },
+
+  "财经/投资": {
+    "aliases": ["财经", "投资", "理财", "股票", "创业融资"],
+    "sources": [
+      { "name": "雪球", "channel": "manual", "mode": "semi", "role": "主·无API", "hint": "热帖/讨论,手动贴" },
+      { "name": "X(推特)", "channel": "last30days", "mode": "semi", "dep": "X配置", "role": "全球·需配置", "hint": "宏观/币圈/海外动态" },
+      { "name": "研报", "channel": "manual", "mode": "semi", "role": "深度", "hint": "机构观点,人工喂" }
+    ]
+  },
+
+  "母婴/教育": {
+    "aliases": ["母婴", "育儿", "教育", "亲子", "K12"],
+    "sources": [
+      { "name": "小红书", "channel": "tikhub", "mode": "auto", "dep": "TikHub Token", "role": "主战场", "hint": "育儿痛点+好物,评论区焦虑点" },
+      { "name": "知乎", "channel": "manual", "mode": "semi", "role": "深度长尾", "hint": "教育方法/选择困惑" }
+    ]
+  },
+
+  "_默认": {
+    "_注": "sources_track 缺失或未匹配时用这个,保证任何号都有源可拉",
+    "sources": [
+      { "name": "目标平台搜索联想词+评论区", "channel": "tikhub", "mode": "auto", "dep": "TikHub Token", "role": "痛点", "hint": "按受众关键词搜,降级则手动" },
+      { "name": "Reddit/Web", "channel": "last30days", "mode": "auto", "role": "通用验证", "hint": "免费即用" }
+    ]
+  }
+}

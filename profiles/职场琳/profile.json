@@ -1,0 +1,71 @@
+{
+  "id": "zhichanglin",
+  "name": "职场琳",
+  "version": "1.0",
+  "updated": "2026-06-29",
+  "_note": "档案#2,模拟 onboarding 给一个非AI赛道真人建档,验证'谁都能用'。北极星=加微率,和迪迪(涨粉率)、带货号(GMV)都不同。",
+
+  "positioning": "一个 HR 出身的职场博主,把面试/谈薪/晋升的真实方法讲透——给想跳槽涨薪的职场人。",
+  "persona": {
+    "carrier": "前大厂 HRBP,现职业咨询",
+    "moat": ["真做过大厂招聘,手里有面试官视角", "经手过上百个谈薪案例"]
+  },
+  "audience": {
+    "want": "想跳槽/涨薪/突破职场瓶颈的 25-35 岁白领",
+    "exclude": "学生、纯吃瓜不行动的人"
+  },
+
+  "north_star": [
+    { "metric": "加微率", "definition": "加微/进群人数 ÷ 播放", "target": ">=0.003", "direction": "max",
+      "why": "商业目标是导私域做付费咨询,加微才是真转化,不是点赞" },
+    { "metric": "完播率", "floor": "8%", "target": "20%", "direction": "max",
+      "why": "图文/口播底线,小红书完播门槛比抖音高" }
+  ],
+  "anti_metrics": ["播放量", "点赞数"],
+
+  "monetization": {
+    "model": "免费干货引流 → 私域 → 1v1 职业咨询/简历精修付费",
+    "forms": ["1v1咨询", "简历精修", "训练营"],
+    "redline": "不卖'包过'承诺,不做虚假offer截图"
+  },
+
+  "content_pillars": [
+    { "name": "面试拆解", "priority": 1, "note": "真实面试题+面试官视角的标准答案" },
+    { "name": "谈薪实操", "priority": 2, "note": "话术+案例,最容易导私域" },
+    { "name": "晋升/避坑认知", "priority": 3, "note": "破圈拉新" }
+  ],
+  "presentation_rule": "结果先行——前3秒甩'这样回答offer多20%',方法作信任背书。",
+
+  "platforms": [
+    { "name": "小红书", "role": "引流主战场", "funnel": "干货钩子 → 评论扣'1'/主页 → 导微信", "primary": true },
+    { "name": "微信 / 社群", "role": "私域承接付费咨询", "primary": true }
+  ],
+
+  "redlines": [
+    "不卖'包过'承诺",
+    "不做虚假 offer/薪资截图",
+    "不标题党、不贩卖焦虑割韭菜"
+  ],
+
+  "signal_thresholds": {
+    "_说明": "小红书口径,收藏率门槛比抖音高",
+    "精准": "藏/赞 > 1.0"
+  },
+
+  "sources_track": "职场/白领",
+
+  "visual_style": {
+    "palette": { "底": "#FBF7F2", "主": "#2F5D50", "撞色": "#E8A03D", "墨": "#2A2A2A" },
+    "slide_template": "SL-01 亮底编辑撞色(暖绿配色变体)",
+    "cover": "小红书风首图,标题关键词压图、真人/场景图",
+    "cover_template": "视频生产/模板库/封面_SwissIKB模板.html",
+    "must_face": false
+  },
+
+  "benchmark_accounts": [
+    { "platform": "小红书", "name": "(onboarding第5问用户报名,待蒸馏)" }
+  ],
+  "tone_samples": [
+    { "_待填": "onboarding第6问贴2条旧文案" }
+  ]
+}

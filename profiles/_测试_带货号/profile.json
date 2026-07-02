@@ -1,0 +1,14 @@
+{
+  "id": "_test_daihuo",
+  "name": "测试·带货号(回归验证用,非真人)",
+  "version": "0.1",
+  "_note": "仅用于证明引擎不改代码就能换判据。北极星=GMV/客单+完播,和迪迪完全不同。",
+  "positioning": "测试用带货号",
+  "audience": { "want": "买东西的人", "exclude": "" },
+  "north_star": [
+    { "metric": "GMV/客单", "definition": "单条归因GMV", "target": ">=2000", "direction": "max", "why": "带货看成交" },
+    { "metric": "完播率", "floor": "3%", "target": "10%", "direction": "max", "why": "完播底线" }
+  ],
+  "anti_metrics": ["涨粉率"],
+  "signal_thresholds": {}
+}

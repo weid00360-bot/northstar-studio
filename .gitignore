@@ -1,0 +1,18 @@
+__pycache__/
+*.pyc
+.venv/
+# 真实用户档案不提交,只发 example(迪迪/职场琳/_测试_)
+profiles/*/
+!profiles/迪迪/
+!profiles/职场琳/
+!profiles/_测试_带货号/
+!profiles/_schema/
+# 取到的原始底表数据/cookie 缓存/生成的日报(含真实数据)
+*.douyin_cookie
+复盘/*.json
+reports/
+*.log
+
+# 内部设计/策略文档,保留本地不进仓库
+设计讨论-session0.md
+设计决策-产品形态.md

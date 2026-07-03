@@ -23,6 +23,28 @@ GOAL_DEFAULT = {
     "接广":   ["涨粉率", "互动率", "完播率"],
     "干货":   ["收藏率", "完播率", "涨粉率"],
 }
+# 同义词兜底:用户随口说"卖货""粉丝"也能对上;全不中返回 None 走数据信号
+GOAL_ALIAS = {
+    "涨粉": ["涨粉", "粉丝", "起号", "做大"],
+    "带货": ["带货", "卖货", "卖东西", "电商", "gmv", "成交", "橱窗"],
+    "导私域": ["私域", "导私", "加微", "微信", "社群", "咨询"],
+    "立人设": ["人设", "ip", "个人品牌", "影响力"],
+    "接广": ["接广", "广告", "商单", "恰饭"],
+    "干货": ["干货", "工具", "教程", "知识", "收藏"],
+}
+
+
+def normalize_goal(stated):
+    """自由文本 → 标准目标 key;不中返回 None(交给数据信号)。"""
+    if not stated:
+        return None
+    if stated in GOAL_DEFAULT:
+        return stated
+    low = stated.lower()
+    for key, words in GOAL_ALIAS.items():
+        if any(w in low for w in words):
+            return key
+    return None
 
 
 def _med(xs):
@@ -78,7 +100,10 @@ def recommend_northstar(baselines, stated_goal=None):
     if baselines.get("_后台指标缺失"):
         notes.append("完播率/涨粉率缺(公开数据取不到,只有自己账号cookie有)→ 这两项基线待补测。")
 
-    stated = GOAL_DEFAULT.get(stated_goal) if stated_goal else None
+    goal_key = normalize_goal(stated_goal)
+    if stated_goal and not goal_key:
+        notes.append(f"没听懂目标「{stated_goal}」(可选:{'/'.join(GOAL_DEFAULT)}),按数据信号走。")
+    stated = GOAL_DEFAULT.get(goal_key) if goal_key else None
     rec = GOAL_DEFAULT.get(data_signal) if data_signal else None
 
     if stated and rec and set(stated) != set(rec):
@@ -94,11 +119,10 @@ def recommend_northstar(baselines, stated_goal=None):
 
 
 def fetch_posts(account, platform, n=30):
-    """取数适配器(平台特定,需 token/cookie)。复用现成通道,不在本文件实现:
-      · 自己账号(有完播/涨粉) → ~/新媒体agent/scripts/loop_review.py 的 fetch_douyin 函数
-      · 对标/公开(小红书/抖音) → blogger-distiller 的 TikHub 采集(~/.xiaohongshu/tikhub_config.json)
-    返回 posts list 喂给 compute_baselines。"""
-    raise NotImplementedError("接 fetch_douyin 或 blogger-distiller 采集;离线测用 --posts 喂 fixture")
+    """取数适配器(平台特定)。抖音自己账号走 engine/fetch/pull.py(自动cookie,含完播/涨粉);
+    对标/公开(小红书/抖音)走 blogger-distiller 的 TikHub 采集(需 token)。
+    其他平台暂无适配 → 用户手动贴数据。返回 posts list 喂给 compute_baselines。"""
+    raise NotImplementedError("抖音用 engine/fetch/pull.py onboarding {id};其他平台手动喂数据")
 
 
 if __name__ == "__main__":

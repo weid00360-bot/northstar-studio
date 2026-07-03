@@ -146,9 +146,10 @@ profiles/          Profile layer: one profile.json per creator (north star / aud
   ├─ 职场琳/       Sample #2 (career account, Xiaohongshu — proves "swap niche, no code change")
   └─ _schema/      Field table + north-star enum + playbook structure
 engine/            Engine: judge / review (review card) / baseline (metric inference)
-  └─ fetch/        Auto data pull: get_cookie / pull / daily_report / daily_report_html
+  ├─ fetch/        Auto data pull: get_cookie / pull / daily_report / daily_report_html
+  └─ sources/      Trend sources: firsthand (GitHub/HN) · douyin_hot (billboard), no API key needed
 scripts/           daily_run.sh (morning run) · install_daily.sh (schedule it)
-skills/            Claude Code skills: onboarding / topics / script / pre-check / review
+.claude/skills/    Claude Code skills: onboarding / topics / script / pre-check / review (auto-loaded)
 共享机制/           Shared mechanics: scorecard / 14 hooks / human-voice writing / red-line library / source router
 视频生产/模板库/     Cover templates / slide styles / shot plans (colors follow your profile)
 工作流.md           Full-chain SOP
@@ -168,7 +169,9 @@ skills/            Claude Code skills: onboarding / topics / script / pre-check 
 | Claude Code | ✅ | skills won't run |
 | Python 3.10+ / venv | ✅ | fetch/judge scripts won't run |
 | Browser logged into Douyin | for data pull | completion/follows/retention unavailable; fallback: save cookie to `~/.douyin_cookie` |
-| TikHub Token (paid 3rd-party) | optional | benchmark distill / Xiaohongshu sources degrade to manual paste |
+| blogger-distiller skill (install to `~/.claude/skills/`, ask the author) | recommended | benchmark distilling (onboarding Q5 / learn-a-blogger tone) degrades to manual paste |
+| TikHub Token (paid 3rd-party, used by blogger-distiller) | optional | benchmark distill / Xiaohongshu sources degrade to manual paste |
+| aihot / last30days skills | optional | AI trend aggregation / 30-day deep-dive degrade (built-in GitHub/HN sources unaffected) |
 
 ## Privacy
 

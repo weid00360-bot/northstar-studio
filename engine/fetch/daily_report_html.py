@@ -134,10 +134,18 @@ def build(pid, n):
     ret_lbl, ret_cv, ret_sv = curve_arrays(curves)
     anti = "、".join(prof.get("anti_metrics", [])) or "无"
 
+    # Chart.js 内联(vendor 本地文件,不依赖 CDN;缺了退回 CDN)
+    vend = os.path.join(HERE, "vendor", "chart.umd.min.js")
+    if os.path.exists(vend):
+        with open(vend, encoding="utf-8") as vf:
+            chart_tag = f"<script>{vf.read()}</script>"
+    else:
+        chart_tag = '<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>'
+
     return f"""<!doctype html><html lang="zh"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>抖音日报 · {esc(user.get('nick_name'))}</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+{chart_tag}
 <style>{CSS}</style></head><body>
 <div class="hdr"><h1>📊 抖音数据日报 · {esc(user.get('nick_name'))}</h1>
 <div class="sub">{datetime.now():%Y-%m-%d %H:%M} · 粉丝 {user.get('follower_count',0):,} · 总获赞 {user.get('total_favorited',0):,} · 近 {len(top)} 条</div>

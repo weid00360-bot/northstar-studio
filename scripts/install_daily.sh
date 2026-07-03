@@ -8,8 +8,14 @@ REPO="$(cd "$(dirname "$0")/.." && pwd)"
 LABEL="com.creator.daily-report"
 PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
 ACTION="${1:-install}"
-PROFILE="${2:-迪迪}"
+PROFILE="${2:-}"
 HOUR="${3:-8}"
+
+if [ "$ACTION" = "install" ] && [ -z "$PROFILE" ]; then
+    echo "用法: install_daily.sh install <你的档案id> [小时]" >&2
+    echo "不默认任何示例档案——用错档案判定全错。" >&2
+    exit 1
+fi
 
 if [ "$ACTION" = "uninstall" ]; then
     launchctl unload "$PLIST" 2>/dev/null || true

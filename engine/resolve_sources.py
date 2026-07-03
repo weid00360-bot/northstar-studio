@@ -29,7 +29,18 @@ def match_track(track):
     return "_默认"
 
 
-def resolve(pid, has_tikhub=False):
+def detect_tikhub():
+    """实测 TikHub token 配置是否存在(同 blogger-distiller 的配置位)。"""
+    p = Path.home() / ".xiaohongshu" / "tikhub_config.json"
+    try:
+        return bool(json.loads(p.read_text()).get("tikhub_api_token", "").strip())
+    except Exception:
+        return False
+
+
+def resolve(pid, has_tikhub=None):
+    if has_tikhub is None:
+        has_tikhub = detect_tikhub()
     prof = load_profile(pid)
     track = prof.get("sources_track")
     key = match_track(track)
@@ -45,7 +56,7 @@ def resolve(pid, has_tikhub=False):
 if __name__ == "__main__":
     pids = sys.argv[1:] or ["迪迪", "职场琳", "_测试_带货号"]
     for pid in pids:
-        name, track, key, srcs = resolve(pid, has_tikhub=True)
+        name, track, key, srcs = resolve(pid)
         print(f"\n=== {name} ｜ sources_track={track} → 路由[{key}] ===")
         for n, ch, mode, role in srcs:
             print(f"  · {n:<26} [{role}] via {ch} ({mode})")

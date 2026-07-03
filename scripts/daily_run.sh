@@ -4,7 +4,12 @@
 set -euo pipefail
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
-PROFILE="${1:-${DAILY_PROFILE:-迪迪}}"
+PROFILE="${1:-${DAILY_PROFILE:-}}"
+if [ -z "$PROFILE" ]; then
+    echo "用法: daily_run.sh <你的档案id>  (或设 DAILY_PROFILE 环境变量)" >&2
+    echo "不默认任何示例档案——用错档案判定全错。" >&2
+    exit 1
+fi
 PY="$REPO/.venv/bin/python"
 [ -x "$PY" ] || PY="python3"
 

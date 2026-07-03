@@ -1,11 +1,11 @@
 {
   "_说明": "赛道 → 信息源映射。选题环节据 profile.sources_track 查本表自动挂源。新增赛道加一个 key 即可。channel=走哪个脚本/skill;mode=auto可自动跑/semi需人工(无API或反爬);dep=依赖项(缺了降级semi)。",
   "_通道登记": {
-    "firsthand": "~/新媒体agent/scripts/firsthand.py — GitHub新热repo + HN近7天AI热议(一手)",
-    "aihot": "aihot skill — AI行业聚合(二手,覆盖广)",
-    "douyin_hot": "~/新媒体agent/scripts/douyin_hot.py — 抖音热榜(可AI过滤)",
+    "firsthand": "engine/sources/firsthand.py — GitHub新热repo + HN近7天AI热议(一手,免auth;可选配置 配置/信息源/博客RSS.txt、youtube频道.txt)",
+    "aihot": "aihot skill(用户级,未装则手动看 aihot.virxact.com) — AI行业聚合(二手,覆盖广)",
+    "douyin_hot": "engine/sources/douyin_hot.py — 抖音热榜(免签名,可AI过滤)",
     "tikhub": "TikHub公开API(同blogger-distiller通道) — 小红书/抖音 搜索+评论+联想词;dep=TikHub Token,缺则降级semi",
-    "last30days": "last30days skill — Reddit/HN/GitHub/Web免费即用;X/YouTube/TikTok需额外配置",
+    "last30days": "last30days skill(用户级,未装则跳过深挖层) — Reddit/HN/GitHub/Web免费即用;X/YouTube/TikTok需额外配置",
     "manual": "无公开API/反爬强 — 用户复制热帖或浏览器读,agent提炼"
   },
 

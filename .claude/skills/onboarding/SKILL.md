@@ -55,6 +55,7 @@ description: >
 - 自动读浏览器 cookie(`get_cookie.py`)→ 自包含取数(`fetch_backend.py`,含完播/涨粉/留存全量底表)→ `baseline.py` 算基线 + 反推,**自动标"自述 vs 数据"冲突**(铁律2:数据优先,让用户拍板)。
 - 首次读 Chrome 可能弹一次钥匙串授权,点允许。没装依赖先 `pip install -r engine/fetch/requirements.txt`。
 - 不依赖任何私有 repo;自己账号的完播/涨粉都能拿(走登录态,不是公开数据)。
+- ⚠️ **自动取数目前只支持抖音**。主战小红书等其他平台:本步跳过、明说"基线待补",北极星按第1问+枚举表定;用户能贴后台数据则手动喂 `compute_baselines`。
 
 **B. 对标蒸馏 → 种套路库(第5问的 3 个账号)**
 - 对每个对标账号跑 `blogger-distiller`(`~/.claude/skills/blogger-distiller`,走 TikHub 公开 API 自动扒,不靠登录态)。

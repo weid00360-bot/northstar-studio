@@ -1,11 +1,17 @@
 __pycache__/
 *.pyc
 .venv/
-# 真实用户档案不提交,只发 example(迪迪/职场琳/_测试_)
+# 真实用户档案不提交,只发 example 的 profile.json(套路库/复盘等个人数据一律不进)
 profiles/*/
 !profiles/迪迪/
+profiles/迪迪/*
+!profiles/迪迪/profile.json
 !profiles/职场琳/
+profiles/职场琳/*
+!profiles/职场琳/profile.json
 !profiles/_测试_带货号/
+profiles/_测试_带货号/*
+!profiles/_测试_带货号/profile.json
 !profiles/_schema/
 # 取到的原始底表数据/cookie 缓存/生成的日报(含真实数据)
 *.douyin_cookie

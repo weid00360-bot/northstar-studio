@@ -8,12 +8,15 @@ description: >
 
 # 发布后复盘（闭环后半截 · 通用）
 
-> 对照迪迪版 `~/新媒体agent/scripts/loop_review.py`:那版把涨粉>1/完播>5%/收藏>0.7 焊死。
-> 本版判据全读 `profiles/{id}/profile.json` 的 `north_star`/`signal_thresholds`,引擎在 `engine/`。
+> 判据全读 `profiles/{id}/profile.json` 的 `north_star`/`signal_thresholds`,引擎在 `engine/`。
 
 ## 流程
-1. **取数**(平台适配层):自己账号走 fetch_douyin(cookie),取一条视频的 view/like/fav/完播/涨粉/留存/播放来源。
-2. **判定**:`python3 engine/review.py {id}`(吃 raw json)→ 出完整复盘卡。
+1. **取数+判定一条命令**(抖音,自动读浏览器 cookie,需浏览器登录抖音):
+   ```bash
+   .venv/bin/python engine/fetch/pull.py review {id} --latest      # 最新一条
+   .venv/bin/python engine/fetch/pull.py review {id} --item-id X   # 指定视频
+   ```
+   直接出完整复盘卡(含留存/播放来源)。⚠️ 主战非抖音的号:自动取数暂不支持,让用户贴后台数据,手动喂 `engine/review.py {id}`(吃 raw json)。
    - 指标表/命中分母/"不看XX" 全按 `profile.north_star`+`anti_metrics`(迪迪看涨粉率+完播;职场琳看加微率+完播)。
    - 判定逻辑见 `engine/judge.py`(floor 合格线 + target 达标 + 小样本护栏<500)。
 3. **限流优先排查**:复盘卡标 🚨疑似限流(0播放有留存/无推荐流)→ **先查可见性/标签/红线**(对红线库),别归因内容。

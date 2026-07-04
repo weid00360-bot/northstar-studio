@@ -42,20 +42,20 @@ You pick yours in onboarding. On Douyin the agent even pulls your last 30 posts 
 
 ## What onboarding asks you
 
-It's a conversation, ~8 questions, each answer fills one part of your profile:
+It's a conversation — **one question at a time**, each with hints and examples. **Stuck? That's fine** — the agent gives you options, rephrases, or suggests a sensible default. It never forces an answer or makes one up:
 
-| # | It asks | It sets |
+| It asks | Hint / if you're stuck | It sets |
 |---|---|---|
-| 0 | Account handle | Profile id |
-| 1 | What kind of account? Goal — grow / sell / build audience / brand deals / personal brand? | **North Star** + positioning + how you make money |
-| 2 | Who's your audience? Who do you *not* want? | Which sources to watch + how to weight topics |
-| 3 | Your unfair advantage — something others can't copy? | The "only you could make this" scoring dimension |
-| 4 | Main platform? Where do you send people off-app (link in bio / Discord / email)? | Compliance rules + your funnel |
-| 5 | 3 creators you're jealous of | Auto-analyzed → seeds your personal playbook |
-| 6 | Paste 2 of your own posts you're proud of | Voice samples, so scripts sound like *you*, not AI |
-| 7 | Visual style? On camera or not? | Cover / slide look |
+| ① What kind of account, and what result do you want most? | grow / sell / build audience / brand deals / persona; stuck? "more followers, actual sales, or people DMing you?" | **North Star** + positioning + monetization |
+| ② Who's it for? Anyone you *don't* want? | age + who they are + their pain; stuck? picture one typical viewer | Sources + topic weighting |
+| ③ What do you have that most in your niche don't? (job / experience / scars) | "2 years as a makeup counter rep"; none yet → mark "to find later" | The "only you" scoring dimension |
+| ④ Main platform? Where do you send people off-app? | TikTok / Douyin / IG; link in bio / Discord / email, or none for now | Compliance rules + funnel |
+| ⑤ 3 creators you're jealous of? | who you want to become; can't name any → search together or add later | Auto-analyzed → seeds your playbook |
+| ⑥ Paste 1–2 of your own posts you're proud of? | so scripts sound like you; new account? we'll calibrate later | Voice samples |
+| ⑦ Visual style? On camera or not? | pick from template options, don't start from scratch | Cover / slide look |
+| (last) What's the account called? | display + folder id only | Profile id |
 
-Then it **locks in your North Star as a concrete number** and shows you a summary card to confirm before saving — no half-finished setups.
+Then it **locks in your North Star as a concrete number** (e.g. "follow rate >1 + completion ≥5%") and shows you a summary card to confirm before saving anything — no half-finished setups.
 
 ## Install
 
